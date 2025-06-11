@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VARALICE DUO - Kontakt</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: #f4f4f4;
+        }
+        .main-content {
+            padding-top: 70px;
+        }
+        .contact-container {
+            max-width: 500px;
+            margin: 50px auto 0 auto;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 6px 32px rgba(40,129,167,0.13);
+            padding: 38px 32px 32px 32px;
+            animation: fadeInUp 1s cubic-bezier(.23,1.02,.53,.97);
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(60px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        .contact-title {
+            text-align: center;
+            font-size: 2em;
+            font-weight: 800;
+            color: #2881a7;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            animation: aboutTitleAnim 1.2s cubic-bezier(.23,1.02,.53,.97);
+        }
+        @keyframes aboutTitleAnim {
+            0% { opacity: 0; letter-spacing: 20px; filter: blur(8px);}
+            60% { opacity: 1; letter-spacing: 2px; filter: blur(0);}
+            100% { opacity: 1; }
+        }
+        .contact-info {
+            text-align: center;
+            color: #1b5e7a;
+            font-size: 1.13em;
+            margin-bottom: 28px;
+            animation: fadeIn 1.5s 0.2s backwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0;}
+            to { opacity: 1;}
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 10px;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            padding: 12px;
+            border: 1px solid #b0b0b0;
+            border-radius: 7px;
+            font-size: 1em;
+            resize: none;
+        }
+        .contact-form textarea {
+            min-height: 90px;
+        }
+        .contact-form button {
+            background: linear-gradient(90deg, #2881a7 60%, #1b5e7a 100%);
+            color: #fff;
+            border: none;
+            border-radius: 7px;
+            padding: 12px 0;
+            font-size: 1.1em;
+            cursor: pointer;
+            font-weight: 600;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 8px rgba(40,129,167,0.07);
+            transition: background 0.2s, transform 0.18s;
+        }
+        .contact-form button:hover {
+            background: #1b5e7a;
+            transform: scale(1.04);
+        }
+        .contact-success {
+            text-align: center;
+            color: #2e7d32;
+            font-weight: bold;
+            margin-top: 12px;
+            display: none;
+            animation: fadeIn 1s;
+        }
+        .menu-bar {
+            background: #181818;
+            color: #fff;
+            width: 100vw;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            padding: 10px 0 10px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            animation: menuFadeIn 1s cubic-bezier(.23,1.02,.53,.97);
+        }
+        @keyframes menuFadeIn {
+            0% { opacity: 0; transform: translateY(-40px);}
+            100% { opacity: 1; transform: translateY(0);}
+        }
+        .menu-content {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            animation: menuFadeIn 1.2s cubic-bezier(.23,1.02,.53,.97);
+        }
+        .menu-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #fff;
+            text-shadow: 0 2px 8px rgba(40,129,167,0.13);
+        }
+        .button-group {
+            display: flex;
+            gap: 14px;
+        }
+        .button-group button {
+            background: #2881a7;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 7px 18px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .button-group button:hover {
+            background: #1b5e7a;
+            transform: translateY(-2px) scale(1.05);
+        }
+        @media (max-width: 600px) {
+            .contact-container { padding: 18px 4vw; }
+            .menu-content { flex-direction: column; gap: 10px;}
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-bar">
+        <div class="menu-content">
+            <span class="menu-title">VARALICE DUO</span>
+            <div class="button-group">
+                <button onclick="window.location.href='shop.html'">SHOP</button>
+                <button onclick="window.location.href='contact.html'">CONTACT US</button>
+                <button onclick="window.location.href='about.html'">ABOUT US</button>
+                <button onclick="window.location.href='duo.html'">POČETNA</button>
+            </div>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="contact-container">
+            <div class="contact-title">Kontaktirajte nas</div>
+            <div class="contact-info">
+                Pošaljite nam poruku putem forme ispod.<br>
+                Odgovorićemo vam u najkraćem mogućem roku.<br>
+                <span style="color:#2881a7; font-weight:600;">Vaše poverenje nam je važno!</span>
+            </div>
+            <form class="contact-form" id="contactForm" autocomplete="off">
+                <input type="text" id="name" placeholder="Vaše ime" required>
+                <input type="email" id="email" placeholder="Vaš email" required>
+                <textarea id="message" placeholder="Vaša poruka" required></textarea>
+                <button type="submit">Pošalji poruku</button>
+            </form>
+            <div class="contact-success" id="contactSuccess">Poruka je uspešno poslata!</div>
+        </div>
+    </div>
+    <script>
+        // Animacija i lažna potvrda slanja forme
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('contactSuccess').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('contactSuccess').style.display = 'none';
+                document.getElementById('contactForm').reset();
+            }, 2500);
+        });
+    </script>
+</body>
+</html>
