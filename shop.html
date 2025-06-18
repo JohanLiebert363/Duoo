@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VARALICE DUO - SHOP</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="ICON" href="ppp.png" type="image/jpg" />
     <style>
         body {
             background: #f4f4f4;
@@ -197,6 +196,41 @@
         .cart-modal-bg.active {
             display: flex;
         }
+        .order-button {
+            background: #2881a7;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 12px;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .order-button:hover {
+            background: #1b5e7a;
+            transform: translateY(-2px) scale(1.05);
+        }
+        .order-button:active {
+            transform: scale(0.96);
+        }
+        .cart-modal-bg.active .cart-modal {
+            display: block;
+        }
+        .cart-modal-bg.active .cart-modal h2 {
+            margin-top: 0;
+        }
+        .cart-modal-bg.active .cart-modal ul {
+            margin-bottom: 0;
+        }
+        .cart-modal-bg.active .cart-modal .close-cart {
+            display: block;
+        }
+        .cart-modal-bg.active .cart-modal .close-cart:hover {
+            background: #1b5e7a;
+        }
+        
         .cart-modal {
             background: #fff;
             border-radius: 12px;
@@ -281,7 +315,7 @@
                     <button onclick="window.location.href='shop.html'">SHOP</button>
                     <button onclick="window.location.href='contact.html'">CONTACT US</button>
                     <button onclick="window.location.href='about.html'">ABOUT US</button>
-                    <button onclick="window.location.href='index.html'">POČETNA</button>
+                    <button onclick="window.location.href='duo.html'">POČETNA</button>
                 </div>
                 <span class="cart-icon" id="cartIcon" title="Korpa">
                     🛒
@@ -304,6 +338,7 @@
             <h2>Vaša korpa</h2>
             <ul id="cartItems"></ul>
             <div class="cart-total" id="cartTotal"></div>
+            <button class="order-button" onclick="sendOrder()">Naruči</button>
             <button class="close-cart" onclick="closeCart()">Zatvori</button>
         </div>
     </div>
@@ -463,6 +498,23 @@
                 renderCart();
             }
         });
+
+        // Slanje porudžbine
+        function sendOrder() {
+        
+            fetch('https://your-backend.com/send-order', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                name: 'Customer Name',
+                email: 'customer@email.com',
+                cart: cart
+              })
+            })
+            .then(res => res.json())
+            .then(data => alert('Order sent!'))
+            .catch(err => alert('Error sending order.'));
+        }
     </script>
 </body>
 </html>
