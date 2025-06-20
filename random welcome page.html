@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <title>Dobrodošli na Duo Varalice</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            min-height: 100vh;
+            min-width: 100vw;
+            background: url('R.AVIF') center center/cover no-repeat fixed;
+            position: relative;
+            overflow: hidden;
+        }
+        /* Overlay za zatamnjenje */
+        .overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(30, 40, 60, 0.55);
+            z-index: 1;
+        }
+        /* Centrirani sadržaj malo ispod centra */
+        .center-content {
+            position: absolute;
+            top: 58%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            text-align: center;
+            color: #fff;
+            width: 90vw;
+            max-width: 600px;
+            padding: 36px 24px 32px 24px;
+            background: rgba(40,129,167,0.18);
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(40,129,167,0.18);
+            animation: fadeInUp 1.2s cubic-bezier(.23,1.02,.53,.97);
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translate(-50%, 40px);}
+            to { opacity: 1; transform: translate(-50%, -50%);}
+        }
+        h1 {
+            font-size: 2.5em;
+            font-weight: 800;
+            margin-bottom: 18px;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.18);
+        }
+        p {
+            font-size: 1.25em;
+            margin-bottom: 28px;
+            color: #e3f2fd;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.13);
+        }
+        button {
+            background: linear-gradient(90deg, #2881a7 60%, #1b5e7a 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 14px 38px;
+            font-size: 1.15em;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 8px rgba(40,129,167,0.13);
+            transition: background 0.2s, transform 0.18s;
+        }
+        button:hover {
+            background: #1b5e7a;
+            transform: scale(1.06);
+        }
+        @media (max-width: 600px) {
+            .center-content { padding: 18px 4vw; }
+            h1 { font-size: 1.5em;}
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="center-content">
+        <h1>Dobrodošli na Duo Varalice!</h1>
+        <p>Najbolje mesto za ljubitelje ribolova, varalica i saveta.<br>
+        Pridružite nam se i otkrijte našu ponudu!</p>
+        <button onclick="window.location.href='shop.html'">Pogledaj proizvode</button>
+    </div>
+</body>
+</html>
