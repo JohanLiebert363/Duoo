@@ -160,6 +160,16 @@
         .hranilice-gallery img:hover {
             transform: scale(1.07);
         }
+        /* Comment name styling */
+        .comment-name {
+            font-weight: bold;
+            color: #2881a7;
+            margin-bottom: 2px;
+            display: block;
+        }
+        .comment-text {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -186,7 +196,6 @@
                 <input type="text" id="feedInput" placeholder="Unesite hranilicu..." required>
                 <button type="submit">Dodaj hranilicu</button>
             </form>
-            <!-- OVDE DODAJ SLIKE -->
             <div class="hranilice-gallery">
                 <img src="hhh4.jpg" alt="Hranilica 1">
                 <img src="hhh3.jpg" alt="Hranilica 2">
@@ -244,7 +253,7 @@
             const comment = commentInput.value.trim();
             if (name !== '' && comment !== '') {
                 const newComment = document.createElement('li');
-                newComment.innerHTML = `<strong>${name}:</strong> ${comment}`;
+                newComment.innerHTML = `<span class="comment-name">${name}</span><span class="comment-text">${comment}</span>`;
                 document.getElementById('commentList').appendChild(newComment);
                 nameInput.value = '';
                 commentInput.value = '';
@@ -273,7 +282,7 @@
             // Populate comment list
             comments.forEach(comment => {
                 const li = document.createElement('li');
-                li.innerHTML = `<strong>${comment.name}:</strong> ${comment.text}`;
+                li.innerHTML = `<span class="comment-name">${comment.name}</span><span class="comment-text">${comment.text}</span>`;
                 commentList.appendChild(li);
             });
         });
