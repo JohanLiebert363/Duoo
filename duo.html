@@ -101,6 +101,10 @@
             border-radius: 6px;
             font-size: 1em;
         }
+        #commentName {
+            max-width: 140px;
+            flex: 0.5;
+        }
         button[type="submit"] {
             background: #2881a7;
             color: #fff;
@@ -144,10 +148,9 @@
             margin-top: 10px;
         }
         .hranilice-gallery img {
-
-            width: 90px;        /* ili 100px, po želji */
-            height: 70px;       /* ili auto, ili npr. 60px za ujednačenost */
-            object-fit: cover;  /* da slike lepo stanu u okvir */
+            width: 90px;
+            height: 70px;
+            object-fit: cover;
             border-radius: 10px;
             box-shadow: 0 2px 8px rgba(40,129,167,0.08);
             transition: transform 0.2s;
@@ -210,11 +213,11 @@
         <div class="container">
             <h2>Komentari korisnika</h2>
             <ul id="commentList"></ul>
-        <form id="commentForm">
-    <input type="text" id="commentName" placeholder="Vaše ime..." required>
-    <input type="text" id="commentInput" placeholder="Dodajte komentar..." required>
-    <button type="submit">Pošalji</button>
-</form>
+            <form id="commentForm">
+                <input type="text" id="commentName" placeholder="Vaše ime..." required>
+                <input type="text" id="commentInput" placeholder="Dodajte komentar..." required>
+                <button type="submit">Pošalji</button>
+            </form>
         </div>
         <footer>
             &copy; 2025 VARALICE DUO. Sva prava zadržana.
@@ -234,45 +237,46 @@
         });
 
         document.getElementById('commentForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const nameInput = document.getElementById('commentName');
-    const commentInput = document.getElementById('commentInput');
-    const name = nameInput.value.trim();
-    const comment = commentInput.value.trim();
-    if (name !== '' && comment !== '') {
-        const newComment = document.createElement('li');
-        newComment.innerHTML = `<strong>${name}:</strong> ${comment}`;
-        document.getElementById('commentList').appendChild(newComment);
-        nameInput.value = '';
-        commentInput.value = '';
-    }
-});
-addEventListener("DOMContentLoaded", () => {
-    const feedList = document.getElementById('feedList');
-    const commentList = document.getElementById('commentList');
+            event.preventDefault();
+            const nameInput = document.getElementById('commentName');
+            const commentInput = document.getElementById('commentInput');
+            const name = nameInput.value.trim();
+            const comment = commentInput.value.trim();
+            if (name !== '' && comment !== '') {
+                const newComment = document.createElement('li');
+                newComment.innerHTML = `<strong>${name}:</strong> ${comment}`;
+                document.getElementById('commentList').appendChild(newComment);
+                nameInput.value = '';
+                commentInput.value = '';
+            }
+        });
 
-    // Sample data
-    const feeds = ['Hranilica sa kukuruzom', 'Hranilica sa pšenicom', 'Hranilica sa crvima'];
-    const comments = [
-        { name: 'Ana', text: 'Super hranilica!' },
-        { name: 'Marko', text: 'Odlična ideja!' },
-        { name: 'Ivan', text: 'Koristim je svaki put!' }
-    ];
+        addEventListener("DOMContentLoaded", () => {
+            const feedList = document.getElementById('feedList');
+            const commentList = document.getElementById('commentList');
 
-    // Populate feed list
-    feeds.forEach(feed => {
-        const li = document.createElement('li');
-        li.textContent = feed;
-        feedList.appendChild(li);
-    });
+            // Sample data
+            const feeds = ['Hranilica sa kukuruzom', 'Hranilica sa pšenicom', 'Hranilica sa crvima'];
+            const comments = [
+                { name: 'Ana', text: 'Super hranilica!' },
+                { name: 'Marko', text: 'Odlična ideja!' },
+                { name: 'Ivan', text: 'Koristim je svaki put!' }
+            ];
 
-    // Populate comment list
-    comments.forEach(comment => {
-        const li = document.createElement('li');
-        li.innerHTML = `<strong>${comment.name}:</strong> ${comment.text}`;
-        commentList.appendChild(li);
-    });
-});
+            // Populate feed list
+            feeds.forEach(feed => {
+                const li = document.createElement('li');
+                li.textContent = feed;
+                feedList.appendChild(li);
+            });
+
+            // Populate comment list
+            comments.forEach(comment => {
+                const li = document.createElement('li');
+                li.innerHTML = `<strong>${comment.name}:</strong> ${comment.text}`;
+                commentList.appendChild(li);
+            });
+        });
     </script>
 </body>
 </html>
