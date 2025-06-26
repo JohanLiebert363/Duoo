@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duo Varalice</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="ICON" href="ppp.png" type="image/jpg" />
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 32px auto 0 auto;
+            background: #fff;
+            padding: 24px 28px;
+            border-radius: 12px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+        }
+
+        .menu-bar {
+            background: #181818;
+            color: #fff;
+            width: 100vw;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            padding: 10px 0 10px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .menu-content {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+        .menu-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        .button-group {
+            display: flex;
+            gap: 14px;
+        }
+        .button-group button {
+            background: #181818;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 7px 18px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            font-weight: bold;
+            font-style: expanded;
+        }
+        .button-group button:hover {
+            background: #2f2f2f;
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        .main-content {
+            padding-top: 60px; /* Space for fixed menu */
+        }
+
+        h1, h2 {
+            color: #2881a7;
+            margin-top: 0;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background: #e2e2e2;
+            margin: 10px 0;
+            padding: 12px 16px;
+            border-radius: 7px;
+            font-size: 1.05em;
+        }
+
+        form {
+            display: flex;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #b0b0b0;
+            border-radius: 6px;
+            font-size: 1em;
+        }
+        #commentName {
+            max-width: 140px;
+            flex: 0.5;
+        }
+        button[type="submit"] {
+            background: #2881a7;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 18px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+        button[type="submit"]:hover {
+            background: #1b5e7a;
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        .gallery {
+            display: flex;
+            gap: 18px;
+            margin-top: 10px;
+        }
+        .gallery img {
+            width: 110px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(40,129,167,0.08);
+            transition: transform 0.2s;
+        }
+        .gallery img:hover {
+            transform: scale(1.07);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #888;
+            font-size: 1em;
+        }
+
+        .hranilice-gallery {
+            display: flex;
+            gap: 18px;
+            margin-top: 10px;
+        }
+        .hranilice-gallery img {
+            width: 90px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(40,129,167,0.08);
+            transition: transform 0.2s;
+            background: #f4f4f4;
+            padding: 4px;
+        }
+        .hranilice-gallery img:hover {
+            transform: scale(1.07);
+        }
+        /* Comment name styling */
+        .comment-name {
+            font-weight: bold;
+            color: #2881a7;
+            margin-bottom: 2px;
+            display: block;
+        }
+        .comment-text {
+            display: block;
+        }
+
+        @media (max-width: 700px) {
+    .container {
+        max-width: 98vw;
+        padding: 12px 4vw;
+        margin: 18px auto 0 auto;
+    }
+    .menu-content {
+        flex-direction: column;
+        gap: 10px;
+        padding: 0 4vw;
+    }
+    .main-content {
+        padding-top: 90px;
+    }
+    .gallery,
+    .hranilice-gallery {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    .gallery img,
+    .hranilice-gallery img {
+        width: 90vw;
+        max-width: 320px;
+        height: auto;
+    }
+    form {
+        flex-direction: column;
+        gap: 8px;
+    }
+    input[type="text"], #commentName {
+        width: 100%;
+        max-width: 100%;
+        flex: unset;
+    }
+    button[type="submit"] {
+        width: 100%;
+    }
+    h1, h2 {
+        font-size: 1.2em;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="menu-bar">
+        <div class="menu-content">
+            <span class="menu-title">VARALICE DUO</span>
+            <div class="button-group">
+                <button onclick="window.location.href='shop.html'">SHOP</button>
+                <button onclick="window.location.href='contact.html'">CONTACT US</button>
+                <button onclick="window.location.href='about.html'">ABOUT US</button>
+            </div>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="container">
+            <h1>Hranilice za pecanje</h1>
+            <p>Dobrodošli u aplikaciju Hranilice za pecanje!</p>
+            <p>Ova aplikacija vam omogućava da kreirate hranilice za pecanje i delite ih sa drugima.</p>
+        </div>
+        <div class="container">
+            <h2>Hranilice</h2>
+            <ul id="feedList"></ul>
+            <form id="feedForm">
+                <input type="text" id="feedInput" placeholder="Unesite hranilicu..." required>
+                <button type="submit">Dodaj hranilicu</button>
+            </form>
+            <div class="hranilice-gallery">
+                <img src="hhh4.jpg" alt="Hranilica 1">
+                <img src="hhh3.jpg" alt="Hranilica 2">
+                <img src="hhh2.jpg" alt="Hranilica 3">
+                <img src="jaksonmeteora.jpg" alt="h">
+                <img src="hhh.jpg" alt="s">
+            </div>
+        </div>
+        <div class="container">
+            <h2>Saveti za pecanje</h2>
+            <ul>
+                <li>Koristite sveže mamce za bolje rezultate.</li>
+                <li>Birajte hranilicu prema vrsti ribe koju pecate.</li>
+                <li>Proverite vremensku prognozu pre izlaska na vodu.</li>
+            </ul>
+        </div>
+        <div class="container">
+            <h2>Galerija ulova</h2>
+            <div class="gallery">
+                <img src="ulov1.png" alt="ulov 1">
+                <img src="ulov2.png" alt="ulov 2">
+            </div>
+        </div>
+        <div class="container">
+            <h2>Komentari korisnika</h2>
+            <ul id="commentList"></ul>
+            <form id="commentForm">
+                <input type="text" id="commentName" placeholder="Vaše ime..." required>
+                <input type="text" id="commentInput" placeholder="Dodajte komentar..." required>
+                <button type="submit">Pošalji</button>
+            </form>
+        </div>
+        <footer>
+            &copy; 2025 VARALICE DUO. Sva prava zadržana.
+        </footer>
+    </div>
+    <script>
+        document.getElementById('feedForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const input = document.getElementById('feedInput');
+            const newItemText = input.value.trim();
+            if (newItemText !== '') {
+                const newItem = document.createElement('li');
+                newItem.textContent = newItemText;
+                document.getElementById('feedList').appendChild(newItem);
+                input.value = '';
+            }
+        });
+
+        document.getElementById('commentForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const nameInput = document.getElementById('commentName');
+            const commentInput = document.getElementById('commentInput');
+            const name = nameInput.value.trim();
+            const comment = commentInput.value.trim();
+            if (name !== '' && comment !== '') {
+                const newComment = document.createElement('li');
+                newComment.innerHTML = `<span class="comment-name">${name}</span><span class="comment-text">${comment}</span>`;
+                document.getElementById('commentList').appendChild(newComment);
+                nameInput.value = '';
+                commentInput.value = '';
+            }
+        });
+
+        addEventListener("DOMContentLoaded", () => {
+            const feedList = document.getElementById('feedList');
+            const commentList = document.getElementById('commentList');
+
+            // Sample data
+            const feeds = ['Hranilica sa kukuruzom', 'Hranilica sa pšenicom', 'Hranilica sa crvima'];
+            const comments = [
+                { name: 'Ana', text: 'Super hranilica!' },
+                { name: 'Marko', text: 'Odlična ideja!' },
+                { name: 'Ivan', text: 'Koristim je svaki put!' }
+            ];
+
+            // Populate feed list
+            feeds.forEach(feed => {
+                const li = document.createElement('li');
+                li.textContent = feed;
+                feedList.appendChild(li);
+            });
+
+            // Populate comment list
+            comments.forEach(comment => {
+                const li = document.createElement('li');
+                li.innerHTML = `<span class="comment-name">${comment.name}</span><span class="comment-text">${comment.text}</span>`;
+                commentList.appendChild(li);
+            });
+        });
+    </script>
+</body>
+</html>
