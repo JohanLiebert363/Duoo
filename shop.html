@@ -141,7 +141,7 @@
             gap: 14px;
         }
         .button-group button {
-            background: #2881a7;
+            background: #181818;
             color: #fff;
             border: none;
             border-radius: 6px;
@@ -149,11 +149,14 @@
             font-size: 1em;
             cursor: pointer;
             transition: background 0.2s, transform 0.2s;
+            font-weight: bold;
+            font-style: expanded;
         }
         .button-group button:hover {
-            background: #1b5e7a;
+            background: #2f2f2f;
             transform: translateY(-2px) scale(1.05);
         }
+        
         .main-content {
             padding-top: 70px;
         }
@@ -302,6 +305,44 @@
             }
             .cart-modal {
                 min-width: 90vw;
+            }
+        }
+        @media (max-width: 700px) {
+            .shop-list {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                margin-top: 18px;
+            }
+            .shop-item {
+                width: 96vw;
+                max-width: 340px;
+                margin: 0 auto;
+                padding: 16px 8px 12px 8px;
+            }
+            .shop-item img {
+                width: 90vw;
+                max-width: 300px;
+                height: auto;
+            }
+            .menu-content {
+                flex-direction: column;
+                gap: 10px;
+                padding: 0 4vw;
+            }
+            .main-content {
+                padding-top: 90px;
+            }
+            .cart-modal {
+                min-width: 95vw;
+                padding: 18px 6vw 12px 6vw;
+            }
+            .button-group {
+                flex-wrap: wrap;
+                gap: 8px;
+                justify-content: center;
+            }
+            h1 {
+                font-size: 1.2em !important;
             }
         }
     </style>
@@ -501,7 +542,8 @@
 
         // Slanje porudžbine
         function sendOrder() {
-        
+            // Ovde dodajte kod za slanje porudžbine na backend
+            // Na primer, korišćenjem fetch API-a:
             fetch('https://your-backend.com/send-order', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
