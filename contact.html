@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VARALICE DUO - Kontakt</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="ICON" href="ppp.png" type="image/jpg" />
     <style>
         body {
             background: #f4f4f4;
@@ -130,7 +129,7 @@
             gap: 14px;
         }
         .button-group button {
-            background: #2881a7;
+            background: #181818;
             color: #fff;
             border: none;
             border-radius: 6px;
@@ -138,11 +137,14 @@
             font-size: 1em;
             cursor: pointer;
             transition: background 0.2s, transform 0.2s;
+            font-weight: bold;
+            font-style: expanded;
         }
         .button-group button:hover {
-            background: #1b5e7a;
+            background: #2f2f2f;
             transform: translateY(-2px) scale(1.05);
         }
+        
         @media (max-width: 600px) {
             .contact-container { padding: 18px 4vw; }
             .menu-content { flex-direction: column; gap: 10px;}
@@ -179,7 +181,7 @@
         </div>
     </div>
     <script>
-        // Animacija i lažna potvrda slanja forme
+        
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             document.getElementById('contactSuccess').style.display = 'block';
