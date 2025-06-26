@@ -1,28 +1,117 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Duo Varalice</title>
+    <title>VARALICE DUO - SHOP</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="ICON" href="ppp.png" type="image/jpg" />
     <style>
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
+            background: #f4f4f4;
         }
-
-        .container {
-            max-width: 800px;
-            margin: 32px auto 0 auto;
+        .shop-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 32px;
+            justify-items: center;
+            margin-top: 36px;
+        }
+        .shop-item {
             background: #fff;
-            padding: 24px 28px;
-            border-radius: 12px;
-            box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+            border-radius: 14px;
+            box-shadow: 0 4px 18px rgba(40,129,167,0.10);
+            padding: 22px 18px 16px 18px;
+            width: 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.18s, box-shadow 0.18s;
+            position: relative;
+            animation: fadeInUp 0.7s cubic-bezier(.23,1.02,.53,.97);
         }
-
+        .shop-item:hover {
+            transform: translateY(-8px) scale(1.045);
+            box-shadow: 0 8px 28px rgba(40,129,167,0.18);
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        .shop-item img {
+            width: 140px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 14px;
+            background: #eaeaea;
+            box-shadow: 0 2px 8px rgba(40,129,167,0.08);
+            transition: transform 0.2s;
+        }
+        .shop-item img:hover {
+            transform: scale(1.08) rotate(-2deg);
+        }
+        .shop-item-title {
+            font-weight: bold;
+            color: #2881a7;
+            margin-bottom: 8px;
+            text-align: center;
+            font-size: 1.13em;
+        }
+        .shop-item-price {
+            color: #1b5e7a;
+            font-size: 1.13em;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .shop-item-stock {
+            font-size: 1em;
+            margin-bottom: 14px;
+            color: #2e7d32;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .shop-item-stock.out {
+            color: #b71c1c;
+            font-weight: bold;
+        }
+        .shop-item button {
+            background: linear-gradient(90deg, #2881a7 60%, #1b5e7a 100%);
+            color: #fff;
+            border: none;
+            border-radius: 7px;
+            padding: 10px 0;
+            font-size: 1em;
+            width: 100%;
+            cursor: pointer;
+            font-weight: 600;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 8px rgba(40,129,167,0.07);
+            transition: background 0.2s, transform 0.18s;
+            margin-top: 2px;
+        }
+        .shop-item button:active {
+            transform: scale(0.96);
+        }
+        .shop-item button:disabled,
+        .shop-item.out-of-stock button {
+            background: #bbb;
+            cursor: not-allowed;
+            color: #fff;
+        }
+        .shop-item.out-of-stock::after {
+            content: "RASPRODATO";
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: #b71c1c;
+            color: #fff;
+            font-size: 0.92em;
+            padding: 4px 10px;
+            border-radius: 7px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 8px rgba(40,129,167,0.10);
+        }
         .menu-bar {
             background: #181818;
             color: #fff;
@@ -35,7 +124,7 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
         .menu-content {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             display: flex;
             align-items: center;
@@ -67,110 +156,156 @@
             background: #2f2f2f;
             transform: translateY(-2px) scale(1.05);
         }
-
+        
         .main-content {
-            padding-top: 60px; /* Space for fixed menu */
+            padding-top: 70px;
         }
-
-        h1, h2 {
-            color: #2881a7;
-            margin-top: 0;
+        .cart-icon {
+            position: relative;
+            margin-left: 18px;
+            cursor: pointer;
+            font-size: 1.3em;
+            transition: color 0.2s;
         }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -14px;
+            background: #e53935;
+            color: #fff;
+            border-radius: 50%;
+            padding: 2px 8px;
+            font-size: 0.95em;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(40,129,167,0.13);
+            animation: cartBounce 0.5s;
         }
-
-        li {
-            background: #e2e2e2;
-            margin: 10px 0;
-            padding: 12px 16px;
-            border-radius: 7px;
-            font-size: 1.05em;
+        @keyframes cartBounce {
+            0% { transform: scale(1);}
+            30% { transform: scale(1.3);}
+            60% { transform: scale(0.9);}
+            100% { transform: scale(1);}
         }
-
-        form {
+        /* Cart modal */
+        .cart-modal-bg {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0; top: 0; width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.25);
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .cart-modal-bg.active {
             display: flex;
-            gap: 10px;
-            margin-top: 18px;
         }
-
-        input[type="text"] {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #b0b0b0;
-            border-radius: 6px;
-            font-size: 1em;
-        }
-        #commentName {
-            max-width: 140px;
-            flex: 0.5;
-        }
-        button[type="submit"] {
+        .order-button {
             background: #2881a7;
             color: #fff;
             border: none;
             border-radius: 6px;
-            padding: 10px 18px;
+            padding: 10px 20px;
             font-size: 1em;
             cursor: pointer;
+            width: 100%;
+            margin-top: 12px;
             transition: background 0.2s, transform 0.2s;
         }
-        button[type="submit"]:hover {
+        .order-button:hover {
             background: #1b5e7a;
             transform: translateY(-2px) scale(1.05);
         }
-
-        .gallery {
-            display: flex;
-            gap: 18px;
-            margin-top: 10px;
+        .order-button:active {
+            transform: scale(0.96);
         }
-        .gallery img {
-            width: 110px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(40,129,167,0.08);
-            transition: transform 0.2s;
+        .cart-modal-bg.active .cart-modal {
+            display: block;
         }
-        .gallery img:hover {
-            transform: scale(1.07);
+        .cart-modal-bg.active .cart-modal h2 {
+            margin-top: 0;
         }
-
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            color: #888;
-            font-size: 1em;
+        .cart-modal-bg.active .cart-modal ul {
+            margin-bottom: 0;
         }
-
-        .hranilice-gallery {
-            display: flex;
-            gap: 18px;
-            margin-top: 10px;
+        .cart-modal-bg.active .cart-modal .close-cart {
+            display: block;
         }
-        .hranilice-gallery img {
-            width: 90px;
-            height: 70px;
-            object-fit: cover;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(40,129,167,0.08);
-            transition: transform 0.2s;
-            background: #f4f4f4;
-            padding: 4px;
+        .cart-modal-bg.active .cart-modal .close-cart:hover {
+            background: #1b5e7a;
         }
-        .hranilice-gallery img:hover {
-            transform: scale(1.07);
+        
+        .cart-modal {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(40,129,167,0.18);
+            margin-top: 90px;
+            padding: 28px 24px 18px 24px;
+            min-width: 320px;
+            max-width: 95vw;
+            animation: fadeInUp 0.5s;
         }
-        /* Comment name styling */
-        .comment-name {
-            font-weight: bold;
+        .cart-modal h2 {
             color: #2881a7;
-            margin-bottom: 2px;
-            display: block;
+            margin-top: 0;
+            margin-bottom: 18px;
+            font-size: 1.2em;
         }
-        .comment-text {
-            display: block;
+        .cart-modal ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 18px 0;
+        }
+        .cart-modal li {
+            margin-bottom: 10px;
+            font-size: 1.05em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .cart-modal .cart-remove {
+            background: #e53935;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 2px 8px;
+            font-size: 0.95em;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .cart-modal .cart-remove:hover {
+            background: #b71c1c;
+        }
+        .cart-modal .cart-total {
+            font-weight: bold;
+            color: #1b5e7a;
+            text-align: right;
+            margin-bottom: 10px;
+        }
+        .cart-modal .close-cart {
+            background: #2881a7;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 7px 18px;
+            font-size: 1em;
+            cursor: pointer;
+            float: right;
+            margin-top: 10px;
+        }
+        .cart-modal .close-cart:hover {
+            background: #1b5e7a;
+        }
+        @media (max-width: 600px) {
+            .shop-list {
+                grid-template-columns: 1fr;
+            }
+            .menu-content {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .cart-modal {
+                min-width: 90vw;
+            }
         }
     </style>
 </head>
@@ -178,116 +313,212 @@
     <div class="menu-bar">
         <div class="menu-content">
             <span class="menu-title">VARALICE DUO</span>
-            <div class="button-group">
-                <button onclick="window.location.href='shop.html'">SHOP</button>
-                <button onclick="window.location.href='contact.html'">CONTACT US</button>
-                <button onclick="window.location.href='about.html'">ABOUT US</button>
+            <div style="display:flex; align-items:center;">
+                <div class="button-group">
+                    <button onclick="window.location.href='shop.html'">SHOP</button>
+                    <button onclick="window.location.href='contact.html'">CONTACT US</button>
+                    <button onclick="window.location.href='about.html'">ABOUT US</button>
+                    <button onclick="window.location.href='duo.html'">POČETNA</button>
+                </div>
+                <span class="cart-icon" id="cartIcon" title="Korpa">
+                    🛒
+                    <span class="cart-count" id="cartCount" style="display:none;">0</span>
+                </span>
             </div>
         </div>
     </div>
     <div class="main-content">
         <div class="container">
-            <h1>Hranilice za pecanje</h1>
-            <p>Dobrodošli u aplikaciju Hranilice za pecanje!</p>
-            <p>Ova aplikacija vam omogućava da kreirate hranilice za pecanje i delite ih sa drugima.</p>
-        </div>
-        <div class="container">
-            <h2>Hranilice</h2>
-            <ul id="feedList"></ul>
-            <form id="feedForm">
-                <input type="text" id="feedInput" placeholder="Unesite hranilicu..." required>
-                <button type="submit">Dodaj hranilicu</button>
-            </form>
-            <div class="hranilice-gallery">
-                <img src="hhh4.jpg" alt="Hranilica 1">
-                <img src="hhh3.jpg" alt="Hranilica 2">
-                <img src="hhh2.jpg" alt="Hranilica 3">
-                <img src="jaksonmeteora.jpg" alt="h">
-                <img src="hhh.jpg" alt="s">
+            <h1 style="text-align:center; color:#2881a7;">SHOP - Hranilice za pecanje</h1>
+            <div class="shop-list" id="shopList">
+                <!-- Proizvodi će biti ubačeni JavaScript-om -->
             </div>
         </div>
-        <div class="container">
-            <h2>Saveti za pecanje</h2>
-            <ul>
-                <li>Koristite sveže mamce za bolje rezultate.</li>
-                <li>Birajte hranilicu prema vrsti ribe koju pecate.</li>
-                <li>Proverite vremensku prognozu pre izlaska na vodu.</li>
-            </ul>
+    </div>
+    <!-- Cart Modal -->
+    <div class="cart-modal-bg" id="cartModalBg">
+        <div class="cart-modal">
+            <h2>Vaša korpa</h2>
+            <ul id="cartItems"></ul>
+            <div class="cart-total" id="cartTotal"></div>
+            <button class="order-button" onclick="sendOrder()">Naruči</button>
+            <button class="close-cart" onclick="closeCart()">Zatvori</button>
         </div>
-        <div class="container">
-            <h2>Galerija ulova</h2>
-            <div class="gallery">
-                <img src="ulov1.png" alt="ulov 1">
-                <img src="ulov2.png" alt="ulov 2">
-            </div>
-        </div>
-        <div class="container">
-            <h2>Komentari korisnika</h2>
-            <ul id="commentList"></ul>
-            <form id="commentForm">
-                <input type="text" id="commentName" placeholder="Vaše ime..." required>
-                <input type="text" id="commentInput" placeholder="Dodajte komentar..." required>
-                <button type="submit">Pošalji</button>
-            </form>
-        </div>
-        <footer>
-            &copy; 2025 VARALICE DUO. Sva prava zadržana.
-        </footer>
     </div>
     <script>
-        document.getElementById('feedForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const input = document.getElementById('feedInput');
-            const newItemText = input.value.trim();
-            if (newItemText !== '') {
-                const newItem = document.createElement('li');
-                newItem.textContent = newItemText;
-                document.getElementById('feedList').appendChild(newItem);
-                input.value = '';
+        // Lista proizvoda sa zalihama
+        const products = [
+            {
+                img: "nigg.jpg",
+                title: "Hranilica Classic",
+                price: "350 RSD",
+                stock: 5
+            },
+            {
+                img: "hhh6.jpg",
+                title: "Hranilica Pro",
+                price: "420 RSD",
+                stock: 0
+            },
+            {
+                img: "hhh2.jpg",
+                title: "Hranilica XL",
+                price: "500 RSD",
+                stock: 2
+            },
+            {
+                img: "jaksonmeteora.jpg",
+                title: "Jakson Meteora",
+                price: "600 RSD",
+                stock: 1
+            },
+            {
+                img: "hhh.jpg",
+                title: "Srbo-Hrvatska hranilica",
+                price: "450 RSD",
+                stock: 3
+            },
+            {
+                img: "hhh3.jpg",
+                title: "Hranilica Feeder",
+                price: "390 RSD",
+                stock: 3
+            },
+            {
+                img: "hhh4.jpg",
+                title: "Hranilica River",
+                price: "470 RSD",
+                stock: 7
+            },
+            {
+                img: "hhh5.jpg",
+                title: "Hranilica Lake",
+                price: "520 RSD",
+                stock: 0
+            }
+        ];
+
+        // Korpa
+        let cart = [];
+
+        // Render shop proizvoda
+        const shopList = document.getElementById('shopList');
+        products.forEach((prod, idx) => {
+            const item = document.createElement('div');
+            item.className = 'shop-item' + (prod.stock === 0 ? ' out-of-stock' : '');
+            item.innerHTML = `
+                <img src="${prod.img}" alt="${prod.title}">
+                <div class="shop-item-title">${prod.title}</div>
+                <div class="shop-item-price">${prod.price}</div>
+                <div class="shop-item-stock${prod.stock === 0 ? ' out' : ''}">
+                    ${prod.stock === 0 ? 'Nema na stanju' : 'Na stanju: ' + prod.stock}
+                </div>
+                <button${prod.stock === 0 ? ' disabled' : ''} data-idx="${idx}">Kupi</button>
+            `;
+            shopList.appendChild(item);
+        });
+
+        // Dodavanje u korpu
+        shopList.addEventListener('click', function(e) {
+            if (e.target.tagName === 'BUTTON' && !e.target.disabled) {
+                const idx = parseInt(e.target.getAttribute('data-idx'));
+                const prod = products[idx];
+                // Proveri stock
+                const inCart = cart.find(item => item.idx === idx);
+                if (inCart) {
+                    if (inCart.qty < prod.stock) {
+                        inCart.qty++;
+                        animateCart();
+                    }
+                } else {
+                    cart.push({ idx, qty: 1 });
+                    animateCart();
+                }
+                updateCartCount();
             }
         });
 
-        document.getElementById('commentForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const nameInput = document.getElementById('commentName');
-            const commentInput = document.getElementById('commentInput');
-            const name = nameInput.value.trim();
-            const comment = commentInput.value.trim();
-            if (name !== '' && comment !== '') {
-                const newComment = document.createElement('li');
-                newComment.innerHTML = `<span class="comment-name">${name}</span><span class="comment-text">${comment}</span>`;
-                document.getElementById('commentList').appendChild(newComment);
-                nameInput.value = '';
-                commentInput.value = '';
+        // Animacija za korpu
+        function animateCart() {
+            const cartCount = document.getElementById('cartCount');
+            cartCount.style.animation = 'none';
+            // trigger reflow
+            void cartCount.offsetWidth;
+            cartCount.style.animation = null;
+        }
+
+        // Prikaz broja proizvoda u korpi
+        function updateCartCount() {
+            const cartCount = document.getElementById('cartCount');
+            const total = cart.reduce((sum, item) => sum + item.qty, 0);
+            cartCount.textContent = total;
+            cartCount.style.display = total > 0 ? 'inline-block' : 'none';
+        }
+
+        // Modal za korpu
+        const cartIcon = document.getElementById('cartIcon');
+        const cartModalBg = document.getElementById('cartModalBg');
+        cartIcon.addEventListener('click', function() {
+            renderCart();
+            cartModalBg.classList.add('active');
+        });
+        function closeCart() {
+            cartModalBg.classList.remove('active');
+        }
+        cartModalBg.addEventListener('click', function(e) {
+            if (e.target === cartModalBg) closeCart();
+        });
+
+        // Render korpe
+        function renderCart() {
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+            cartItems.innerHTML = '';
+            let total = 0;
+            cart.forEach(item => {
+                const prod = products[item.idx];
+                const priceNum = parseInt(prod.price);
+                total += priceNum * item.qty;
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <span>${prod.title} <span style="color:#888;">x${item.qty}</span></span>
+                    <span>
+                        ${priceNum * item.qty} RSD
+                        <button class="cart-remove" data-idx="${item.idx}">✕</button>
+                    </span>
+                `;
+                cartItems.appendChild(li);
+            });
+            cartTotal.textContent = total > 0 ? `Ukupno: ${total} RSD` : "Korpa je prazna.";
+        }
+
+        // Uklanjanje iz korpe
+        document.getElementById('cartItems').addEventListener('click', function(e) {
+            if (e.target.classList.contains('cart-remove')) {
+                const idx = parseInt(e.target.getAttribute('data-idx'));
+                cart = cart.filter(item => item.idx !== idx);
+                updateCartCount();
+                renderCart();
             }
         });
 
-        addEventListener("DOMContentLoaded", () => {
-            const feedList = document.getElementById('feedList');
-            const commentList = document.getElementById('commentList');
-
-            // Sample data
-            const feeds = ['Hranilica sa kukuruzom', 'Hranilica sa pšenicom', 'Hranilica sa crvima'];
-            const comments = [
-                { name: 'Ana', text: 'Super hranilica!' },
-                { name: 'Marko', text: 'Odlična ideja!' },
-                { name: 'Ivan', text: 'Koristim je svaki put!' }
-            ];
-
-            // Populate feed list
-            feeds.forEach(feed => {
-                const li = document.createElement('li');
-                li.textContent = feed;
-                feedList.appendChild(li);
-            });
-
-            // Populate comment list
-            comments.forEach(comment => {
-                const li = document.createElement('li');
-                li.innerHTML = `<span class="comment-name">${comment.name}</span><span class="comment-text">${comment.text}</span>`;
-                commentList.appendChild(li);
-            });
-        });
+        // Slanje porudžbine
+        function sendOrder() {
+            // Ovde dodajte kod za slanje porudžbine na backend
+            // Na primer, korišćenjem fetch API-a:
+            fetch('https://your-backend.com/send-order', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                name: 'Customer Name',
+                email: 'customer@email.com',
+                cart: cart
+              })
+            })
+            .then(res => res.json())
+            .then(data => alert('Order sent!'))
+            .catch(err => alert('Error sending order.'));
+        }
     </script>
 </body>
 </html>
